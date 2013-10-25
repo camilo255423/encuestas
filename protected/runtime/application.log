@@ -1,0 +1,145 @@
+2013/10/24 17:57:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in /var/www/yii/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/yii/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/yii/framework/base/CModule.php(103): CModule->getComponent('db')
+#4 /var/www/yii/framework/gii/generators/model/ModelCode.php(60): CModule->__get('db')
+#5 /var/www/yii/framework/web/CFormModel.php(39): ModelCode->init()
+#6 /var/www/yii/framework/gii/CCodeGenerator.php(153): CFormModel->__construct()
+#7 /var/www/yii/framework/gii/CCodeGenerator.php(63): CCodeGenerator->prepare()
+#8 /var/www/yii/framework/web/actions/CInlineAction.php(49): CCodeGenerator->actionIndex()
+#9 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('index')
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/model/index')
+#14 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/encuestas/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/encuestas/index.php?r=gii/model/index
+HTTP_REFERER=http://127.0.0.1/encuestas/index.php?r=gii/module/index
+---
+2013/10/24 17:57:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1049] Unknown database 'testdrive'' in /var/www/yii/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/yii/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/yii/framework/base/CModule.php(103): CModule->getComponent('db')
+#4 /var/www/yii/framework/gii/generators/model/ModelCode.php(60): CModule->__get('db')
+#5 /var/www/yii/framework/web/CFormModel.php(39): ModelCode->init()
+#6 /var/www/yii/framework/gii/CCodeGenerator.php(153): CFormModel->__construct()
+#7 /var/www/yii/framework/gii/CCodeGenerator.php(63): CCodeGenerator->prepare()
+#8 /var/www/yii/framework/web/actions/CInlineAction.php(49): CCodeGenerator->actionIndex()
+#9 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('index')
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/model/index')
+#14 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/encuestas/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/encuestas/index.php?r=gii/model/index
+HTTP_REFERER=http://127.0.0.1/encuestas/index.php?r=gii/module/index
+---
+2013/10/24 17:58:11 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[42000] [1049] Unknown database 'autoeval'' in /var/www/yii/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/yii/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/yii/framework/base/CModule.php(103): CModule->getComponent('db')
+#4 /var/www/yii/framework/gii/generators/model/ModelCode.php(60): CModule->__get('db')
+#5 /var/www/yii/framework/web/CFormModel.php(39): ModelCode->init()
+#6 /var/www/yii/framework/gii/CCodeGenerator.php(153): CFormModel->__construct()
+#7 /var/www/yii/framework/gii/CCodeGenerator.php(63): CCodeGenerator->prepare()
+#8 /var/www/yii/framework/web/actions/CInlineAction.php(49): CCodeGenerator->actionIndex()
+#9 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('index')
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/model/index')
+#14 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/encuestas/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/encuestas/index.php?r=gii/model/index
+HTTP_REFERER=http://127.0.0.1/encuestas/index.php?r=gii/module/index
+---
+2013/10/24 21:59:10 [error] [php] include(FuenteProceso.php): failed to open stream: No such file or directory (/var/www/yii/framework/YiiBase.php:427)
+Stack trace:
+#0 /var/www/encuestas/protected/controllers/FuenteController.php(15): spl_autoload_call()
+#1 /var/www/yii/framework/web/actions/CInlineAction.php(49): FuenteController->actionIndex()
+#2 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /var/www/yii/framework/web/CController.php(286): FuenteController->runAction()
+#4 /var/www/yii/framework/web/CController.php(265): FuenteController->runActionWithFilters()
+#5 /var/www/yii/framework/web/CWebApplication.php(282): FuenteController->run()
+#6 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /var/www/encuestas/index.php(13): CWebApplication->run()
+REQUEST_URI=/encuestas/index.php?r=fuente
+in /var/www/encuestas/protected/controllers/FuenteController.php (15)
+in /var/www/encuestas/index.php (13)
+2013/10/24 22:00:17 [error] [php] Undefined variable: idFuente (/var/www/encuestas/protected/controllers/FuenteController.php:15)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(286): FuenteController->runAction()
+#1 /var/www/yii/framework/web/CController.php(265): FuenteController->runActionWithFilters()
+#2 /var/www/yii/framework/web/CWebApplication.php(282): FuenteController->run()
+#3 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /var/www/encuestas/index.php(13): CWebApplication->run()
+REQUEST_URI=/encuestas/index.php?r=fuente
+in /var/www/encuestas/protected/controllers/FuenteController.php (15)
+in /var/www/encuestas/index.php (13)
+2013/10/24 22:02:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "fuente?idFuente=1".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('fuente?idFuente...')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/encuestas/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/encuestas/index.php?r=fuente?idFuente=1
+---
+2013/10/24 22:02:53 [error] [exception.CException] exception 'CException' with message 'FuenteController cannot find the requested view "instrumentoFuente".' in /var/www/yii/framework/web/CController.php:878
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('instrumentoFuen...', Array, true)
+#1 /var/www/encuestas/protected/controllers/FuenteController.php(18): CController->render('instrumentoFuen...', Array)
+#2 [internal function]: FuenteController->actionIndex('1')
+#3 /var/www/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(FuenteController), Array)
+#4 /var/www/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(FuenteController), Object(ReflectionMethod), Array)
+#5 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#7 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('fuente')
+#10 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/encuestas/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/encuestas/index.php?r=fuente&idFuente=1
+---
+2013/10/24 22:03:51 [error] [php] include(PreguntaProceso.php): failed to open stream: No such file or directory (/var/www/yii/framework/YiiBase.php:427)
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(395): spl_autoload_call()
+#1 /var/www/yii/framework/db/ar/CActiveFinder.php(182): model()
+#2 /var/www/yii/framework/db/ar/CActiveFinder.php(230): CActiveFinder->getModel()
+#3 /var/www/yii/framework/db/ar/CActiveFinder.php(48): CActiveFinder->buildJoinTree()
+#4 /var/www/yii/framework/db/ar/CActiveRecord.php(909): CActiveFinder->__construct()
+#5 /var/www/yii/framework/db/ar/CActiveRecord.php(280): FuenteProceso->getActiveFinder()
+#6 /var/www/yii/framework/db/ar/CActiveRecord.php(143): FuenteProceso->getRelated()
+#7 /var/www/encuestas/protected/views/fuente/index.php(20): FuenteProceso->__get()
+#8 /var/www/yii/framework/web/CBaseController.php(126): require()
+#9 /var/www/yii/framework/web/CBaseController.php(95): FuenteController->renderInternal()
+#10 /var/www/yii/framework/web/CController.php(869): FuenteController->renderFile()
+#11 /var/www/yii/framework/web/CController.php(782): FuenteController->renderPartial()
+#12 /var/www/encuestas/protected/controllers/FuenteController.php(18): FuenteController->render()
+#13 unknown(0): FuenteController->actionIndex()
+#14 /var/www/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#15 /var/www/yii/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#16 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#17 /var/www/yii/framework/web/CController.php(286): FuenteController->runAction()
+#18 /var/www/yii/framework/web/CController.php(265): FuenteController->runActionWithFilters()
+#19 /var/www/yii/framework/web/CWebApplication.php(282): FuenteController->run()
+#20 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#22 /var/www/encuestas/index.php(13): CWebApplication->run()
+REQUEST_URI=/encuestas/index.php?r=fuente&idFuente=1
+in /var/www/encuestas/protected/views/fuente/index.php (20)
+in /var/www/encuestas/protected/controllers/FuenteController.php (18)
+in /var/www/encuestas/index.php (13)
