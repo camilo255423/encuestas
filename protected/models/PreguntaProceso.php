@@ -51,6 +51,7 @@ class PreguntaProceso extends CActiveRecord
 			'caracteristicas' => array(self::HAS_MANY, 'CaracteristicaPreguntaProceso', 'id_pregunta_proceso'),
 			'preguntaFuenteProceso' => array(self::HAS_ONE, 'PreguntaFuenteProceso', 'id_pregunta_proceso'),
 			'idTipoRespuesta' => array(self::BELONGS_TO, 'TipoRespuesta', 'id_tipo_respuesta'),
+                        'respuestas' => array(self::HAS_MANY, 'opciones_respuesta', 'id_tipo_respuesta'),
 		);
 	}
 

@@ -7,11 +7,10 @@
  * @property integer $id_usuario_proceso
  * @property string $usuario_proceso
  * @property integer $id_fuente_proceso
- * @property integer $id_opcion
  *
  * The followings are the available model relations:
+ * @property Respuesta[] $respuestas
  * @property FuenteProceso $idFuenteProceso
- * @property OpcionesRespuesta $idOpcion
  */
 class UsuarioFuenteProceso extends CActiveRecord
 {
@@ -31,12 +30,12 @@ class UsuarioFuenteProceso extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_usuario_proceso, usuario_proceso, id_fuente_proceso, id_opcion', 'required'),
-			array('id_usuario_proceso, id_fuente_proceso, id_opcion', 'numerical', 'integerOnly'=>true),
+			array('id_usuario_proceso, usuario_proceso, id_fuente_proceso', 'required'),
+			array('id_usuario_proceso, id_fuente_proceso', 'numerical', 'integerOnly'=>true),
 			array('usuario_proceso', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_usuario_proceso, usuario_proceso, id_fuente_proceso, id_opcion', 'safe', 'on'=>'search'),
+			array('id_usuario_proceso, usuario_proceso, id_fuente_proceso', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,8 +47,8 @@ class UsuarioFuenteProceso extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'respuestas' => array(self::HAS_MANY, 'Respuesta', 'id_usuario_proceso,id_fuente_proceso','condition'=>'respuestas.id_usuario_proceso is NULL'),
 			'idFuenteProceso' => array(self::BELONGS_TO, 'FuenteProceso', 'id_fuente_proceso'),
-			'idOpcion' => array(self::BELONGS_TO, 'OpcionesRespuesta', 'id_opcion'),
 		);
 	}
 
@@ -62,7 +61,6 @@ class UsuarioFuenteProceso extends CActiveRecord
 			'id_usuario_proceso' => 'Id Usuario Proceso',
 			'usuario_proceso' => 'Usuario Proceso',
 			'id_fuente_proceso' => 'Id Fuente Proceso',
-			'id_opcion' => 'Id Opcion',
 		);
 	}
 
@@ -87,7 +85,6 @@ class UsuarioFuenteProceso extends CActiveRecord
 		$criteria->compare('id_usuario_proceso',$this->id_usuario_proceso);
 		$criteria->compare('usuario_proceso',$this->usuario_proceso,true);
 		$criteria->compare('id_fuente_proceso',$this->id_fuente_proceso);
-		$criteria->compare('id_opcion',$this->id_opcion);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -1,25 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "fuente_proceso".
+ * This is the model class for table "pregunta_fuente_proceso".
  *
- * The followings are the available columns in table 'fuente_proceso':
+ * The followings are the available columns in table 'pregunta_fuente_proceso':
+ * @property integer $id_pregunta_proceso
  * @property integer $id_fuente_proceso
- * @property string $nombre
- * @property string $descripcion
- * @property string $enunciado
  *
  * The followings are the available model relations:
- * @property PreguntaFuenteProceso[] $preguntaFuenteProcesos
+ * @property FuenteProceso $idFuenteProceso
+ * @property PreguntaProceso $idPreguntaProceso
  */
-class FuenteProceso extends CActiveRecord
+class PreguntaFuenteProceso extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'fuente_proceso';
+		return 'pregunta_fuente_proceso';
 	}
 
 	/**
@@ -30,11 +29,11 @@ class FuenteProceso extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_fuente_proceso,nombre', 'required'),
-			array('nombre', 'length', 'max'=>200),
+			array('id_pregunta_proceso, id_fuente_proceso', 'required'),
+			array('id_pregunta_proceso, id_fuente_proceso', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_fuente_proceso, nombre, descripcion, enunciado', 'safe', 'on'=>'search'),
+			array('id_pregunta_proceso, id_fuente_proceso', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,8 +45,8 @@ class FuenteProceso extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-                    'preguntas' => array(self::MANY_MANY, 'PreguntaProceso', 'pregunta_fuente_proceso(id_pregunta_proceso,id_fuente_proceso)','order'=>'orden'),
-			'preguntaFuenteProcesos' => array(self::HAS_MANY, 'PreguntaFuenteProceso', 'id_fuente_proceso'),
+			'idFuenteProceso' => array(self::BELONGS_TO, 'FuenteProceso', 'id_fuente_proceso'),
+			
 		);
 	}
 
@@ -57,10 +56,8 @@ class FuenteProceso extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'id_pregunta_proceso' => 'Id Pregunta Proceso',
 			'id_fuente_proceso' => 'Id Fuente Proceso',
-			'nombre' => 'Nombre',
-			'descripcion' => 'Descripcion',
-			'enunciado' => 'Enunciado',
 		);
 	}
 
@@ -82,10 +79,8 @@ class FuenteProceso extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('id_pregunta_proceso',$this->id_pregunta_proceso);
 		$criteria->compare('id_fuente_proceso',$this->id_fuente_proceso);
-		$criteria->compare('nombre',$this->nombre,true);
-		$criteria->compare('descripcion',$this->descripcion,true);
-		$criteria->compare('enunciado',$this->enunciado,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -96,7 +91,7 @@ class FuenteProceso extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return FuenteProceso the static model class
+	 * @return PreguntaFuenteProceso the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

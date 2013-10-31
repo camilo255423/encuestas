@@ -1,36 +1,45 @@
-<?php  $form=$this->beginWidget('CActiveForm', array(
+<div class="form">
+<?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'instrumento-fuente',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+	'enableClientValidation'=>true,
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
 )); ?>
 
-<?php echo CHtml::hiddenField("idFuente",$fuente->id_fuente_proceso); ?>  
 <h1><?php echo $fuente->nombre; ?></h1>
-<div id="drag">
-<table class="ww" border="1" id="table1">
-<colgroup>
-    <col width="250"/>
-</colgroup>
-    
+
+<table id="table1">
+
 <tbody>
-<h2><?php echo $fuente->enunciado; ?></h2>        
-<?php foreach ($fuente->preguntas as $i=>$pregunta) {?>
+<h2><?php echo $fuente->enunciado; ?></h2>  
+<?php $i=0; ?>
+<?php foreach ($respuestas as $respuesta) {?>
     
 
-<tr class="zzz">
-    <td class="xx"><?php echo ($i+1);?>. 
-    <div id="c" class="drag green" style="display: inline">
-        <?php echo CHtml::ActiveHiddenField($pregunta,"[$i]id_pregunta_proceso",array('value'=>$pregunta->id_pregunta_proceso)); ?>
-        <?php echo $pregunta->enunciado; ?>
+<tr>
+    <td <?php echo ($i+1);?>.
+    <div>
+        <?php echo $fuente->preguntas[$i]->enunciado; ?>
+        <?php echo CHtml::activeHiddenField($respuesta,"[$i]id_fuente_proceso"); ?>
+        <?php echo CHtml::activeHiddenField($respuesta,"[$i]id_pregunta_proceso"); ?>
+        <?php echo CHtml::activeHiddenField($respuesta,"[$i]id_usuario_proceso"); ?>
+        
     </div>
     </td>
+    <td>
+         <?php echo $form->dropDownList($respuesta, "[$i]id_opcion", CHtml::listData(OpcionesRespuesta::model()->findAllByAttributes(array('id_tipo_respuesta'=>$fuente->preguntas[$i]->id_tipo_respuesta)), 'id_opcion','respuesta'),array('empty'=>'Seleccionar...')); ?>
+         <?php echo $form->error($respuesta, "[$i]id_opcion"); ?>
+    </td>
 </tr>
-
+<?php $i++; ?>
 <?php } ?>
+
 </tbody>
 </table>
-</div>
+<div class="row buttons" style="text-align: center">
+		<?php echo CHtml::submitButton('Aceptar'); ?>
+</div>    
+
 <?php  $this->endWidget(); ?>
+</div>
