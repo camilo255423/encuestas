@@ -33,7 +33,7 @@ class Respuesta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_usuario_proceso, id_fuente_proceso, id_pregunta_proceso, id_opcion', 'required','message'=>'Por favor selección una opción'),
+			array('id_usuario_proceso, id_fuente_proceso, id_pregunta_proceso, id_opcion', 'required','message'=>'Por favor seleccione una opción'),
 			array('id_usuario_proceso, id_fuente_proceso, id_pregunta_proceso, id_opcion', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
