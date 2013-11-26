@@ -577,3 +577,14 @@ Stack trace:
 REQUEST_URI=/encuestas/index.php?r=fuente
 in /var/www/encuestas/protected/controllers/FuenteController.php (30)
 in /var/www/encuestas/index.php (13)
+2013/11/25 21:12:31 [error] [php] Trying to get property of non-object (/var/www/encuestas/protected/controllers/FuenteController.php:52)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(286): FuenteController->runAction()
+#1 /var/www/yii/framework/web/CController.php(265): FuenteController->runActionWithFilters()
+#2 /var/www/yii/framework/web/CWebApplication.php(282): FuenteController->run()
+#3 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /var/www/encuestas/index.php(13): CWebApplication->run()
+REQUEST_URI=/encuestas/index.php?r=fuente/index
+in /var/www/encuestas/protected/controllers/FuenteController.php (52)
+in /var/www/encuestas/index.php (13)

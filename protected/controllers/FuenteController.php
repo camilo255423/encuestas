@@ -2,6 +2,14 @@
 
 class FuenteController extends Controller
 {
+    public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+
   
          /**
 	 * Specifies the access control rules.
@@ -10,22 +18,25 @@ class FuenteController extends Controller
 	 */
 	public function accessRules()
 	{
+            
 		return array(
 			
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index'),
+				'actions'=>array('create','update', 'index','view','prueba'),
 				'users'=>array('@'),
 			),
-			
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete'),
+				'users'=>array('admin'),
+			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
 		);
 	}
-
 	public function actionIndex()
 	{
-            
+          
             $i=0;
             if(isset($_POST['Respuesta']))
             {
@@ -39,13 +50,14 @@ class FuenteController extends Controller
                 }
              
             }
+            
         $idUsuario = Yii::app()->user->getId();      
         
         $usuario=UsuarioFuenteProceso::model()->with('respuestas')->findByAttributes(array('id_usuario_proceso'=>$idUsuario));
        
         if($usuario==null)
         {
-            
+          
             $this->redirect(array('site/logout'));
             
         }    

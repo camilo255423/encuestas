@@ -29,7 +29,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$this->redirect("index.php?r=fuente/index");
 	}
 
 	/**
@@ -92,7 +92,18 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
+                        {
+                             $usuario=UsuarioFuenteProceso::model()->with('respuestas')->findByAttributes(array('id_usuario_proceso'=>$model->username));
+                                if($usuario!=null)
+                                {    
 				$this->redirect(Yii::app()->user->returnUrl);
+                                }
+                                else
+                                {
+                                    Yii::app()->user->logout();
+                                    $model->addError("username","El usuario no tiene encuestas asignadas");
+                                }    
+                        }
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
