@@ -1,25 +1,29 @@
 <?php
 
 /**
- * This is the model class for table "usuario_fuente_proceso".
+ * This is the model class for table "proceso".
  *
- * The followings are the available columns in table 'usuario_fuente_proceso':
- * @property integer $id_usuario_proceso
- * @property string $usuario_proceso
- * @property integer $id_fuente_proceso
+ * The followings are the available columns in table 'proceso':
+ * @property integer $id_proceso
+ * @property string $fecha_inicio
+ * @property string $fecha_fin
+ * @property integer $id_tipo_proceso
+ * @property string $descripcion
  *
  * The followings are the available model relations:
- * @property Respuesta[] $respuestas
- * @property FuenteProceso $idFuenteProceso
+ * @property FactorProceso[] $factorProcesos
+ * @property FuenteProceso[] $fuenteProcesos
+ * @property PreguntaProceso[] $preguntaProcesos
+ * @property TipoProceso $idTipoProceso
  */
-class UsuarioFuenteProceso extends CActiveRecord
+class Proceso extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'usuario_fuente_proceso';
+		return 'proceso';
 	}
 
 	/**
@@ -30,12 +34,11 @@ class UsuarioFuenteProceso extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_usuario_proceso, usuario_proceso, id_fuente_proceso', 'required'),
-			array('id_usuario_proceso, id_fuente_proceso', 'numerical', 'integerOnly'=>true),
-			array('usuario_proceso', 'length', 'max'=>200),
+			array('fecha_inicio, fecha_fin, id_tipo_proceso, descripcion', 'required'),
+			array('id_tipo_proceso', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_usuario_proceso, usuario_proceso, id_fuente_proceso', 'safe', 'on'=>'search'),
+			array('id_proceso, fecha_inicio, fecha_fin, id_tipo_proceso, descripcion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,9 +50,10 @@ class UsuarioFuenteProceso extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'respuestas' => array(self::HAS_MANY, 'Respuesta', 'id_usuario_proceso,id_fuente_proceso','condition'=>'respuestas.id_usuario_proceso is NULL'),
-			'fuenteproceso' => array(self::BELONGS_TO, 'FuenteProceso', 'id_fuente_proceso'),
-                        
+			'factorProcesos' => array(self::HAS_MANY, 'FactorProceso', 'id_proceso'),
+			'fuenteProcesos' => array(self::HAS_MANY, 'FuenteProceso', 'id_proceso'),
+			'preguntaProcesos' => array(self::HAS_MANY, 'PreguntaProceso', 'id_proceso'),
+			'idTipoProceso' => array(self::BELONGS_TO, 'TipoProceso', 'id_tipo_proceso'),
 		);
 	}
 
@@ -59,9 +63,11 @@ class UsuarioFuenteProceso extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_usuario_proceso' => 'Id Usuario Proceso',
-			'usuario_proceso' => 'Usuario Proceso',
-			'id_fuente_proceso' => 'Id Fuente Proceso',
+			'id_proceso' => 'Id Proceso',
+			'fecha_inicio' => 'Fecha Inicio',
+			'fecha_fin' => 'Fecha Fin',
+			'id_tipo_proceso' => 'Id Tipo Proceso',
+			'descripcion' => 'Descripcion',
 		);
 	}
 
@@ -83,9 +89,11 @@ class UsuarioFuenteProceso extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_usuario_proceso',$this->id_usuario_proceso);
-		$criteria->compare('usuario_proceso',$this->usuario_proceso,true);
-		$criteria->compare('id_fuente_proceso',$this->id_fuente_proceso);
+		$criteria->compare('id_proceso',$this->id_proceso);
+		$criteria->compare('fecha_inicio',$this->fecha_inicio,true);
+		$criteria->compare('fecha_fin',$this->fecha_fin,true);
+		$criteria->compare('id_tipo_proceso',$this->id_tipo_proceso);
+		$criteria->compare('descripcion',$this->descripcion,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -96,7 +104,7 @@ class UsuarioFuenteProceso extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return UsuarioFuenteProceso the static model class
+	 * @return Proceso the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

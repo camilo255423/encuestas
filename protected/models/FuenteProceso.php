@@ -48,6 +48,7 @@ class FuenteProceso extends CActiveRecord
 		return array(
                     'preguntas' => array(self::MANY_MANY, 'PreguntaProceso', 'pregunta_fuente_proceso(id_pregunta_proceso,id_fuente_proceso)','order'=>'orden'),
 			'preguntaFuenteProcesos' => array(self::HAS_MANY, 'PreguntaFuenteProceso', 'id_fuente_proceso'),
+                        'proceso'=> array(self::HAS_MANY, 'Proceso', 'id_proceso'),
 		);
 	}
 

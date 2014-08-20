@@ -92,8 +92,12 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
-                        {
-                             $usuario=UsuarioFuenteProceso::model()->with('respuestas')->findByAttributes(array('id_usuario_proceso'=>$model->username));
+                        {  // date_default_timezone_set('Colombia/Bogota');
+                            $fechaActual = date('y-m-d', time());
+                            $criteria = new CDbCriteria();
+                            $criteria->condition = 't.id_usuario_proceso=:id_usuario_proceso and :fechaActual>=fecha_inicio and :fechaActual<=fecha_fin';
+                            $criteria->params = array(':id_usuario_proceso'=>$model->username,'fechaActual'=>$fechaActual);
+                             $usuario=UsuarioFuenteProceso::model()->with('respuestas', 'fuenteproceso.proceso')->find($criteria);
                                 if($usuario!=null)
                                 {    
 				$this->redirect(Yii::app()->user->returnUrl);
