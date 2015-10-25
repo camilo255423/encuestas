@@ -59,15 +59,15 @@ h3
 	text-align: center;
 }
 
-#logo
+
+#logo7
 {
-	padding: 5px 0px;
+	padding: 100px 50px 70px 50px;
+	text-align: center;
+       background: url('logo.jpg') no-repeat; 
+       background-size:402px 71px;
 }
 
-#logo a
-{
-	text-decoration: none;
-}
 
 #header .top-menus
 {

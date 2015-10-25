@@ -43,7 +43,7 @@ body
 
 #logo7
 {
-padding: 10px 50px 70px 50px;
+	padding: 100px 50px 70px 50px;
 	text-align: center;
        background: url('logo.jpg') no-repeat; 
        background-size:402px 71px;
