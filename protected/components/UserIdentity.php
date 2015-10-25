@@ -18,14 +18,46 @@ class UserIdentity extends CUserIdentity
     private $_id;
 	public function authenticate()
 	{
-	$usuario=UsuarioFuenteProceso::model()->findByAttributes(array('usuario_proceso'=>$this->username));
-        
-		if($usuario==null)
+
+	//$usuario=UsuarioFuenteProceso::model()->findByAttributes(array('usuario_proceso'=>$this->username));
+        $usuario_roles=DITUSUARIO::model()->findAllByAttributes(array('DOCUMENTO'=>$this->username));
+		if($usuario_roles==null)
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
 		else
                 {    
-			$this->errorCode=self::ERROR_NONE;
-                        $this->_id=$usuario->id_usuario_proceso;
+		            //$usuario=UsuarioFuenteProceso::model()->findByAttributes(array('usuario_proceso'=>$this->username));
+		           // if($usuario==null)
+		           // {
+		           	
+
+		           	    foreach($usuario_roles as $rol)
+		           	    {	
+		            	$fuentes = Fuente::model()->with('fuenteProcesos')->findAllByAttributes(array('nombre'=>$rol->ROL));
+		            	    $this->_id=$rol->DOCUMENTO;
+		            	 
+		            	    foreach($fuentes as $f)
+		            	    {
+		            	    	
+		            	     foreach($f->fuenteProcesos as $fp)
+		            	     {	
+		            	     	if(null==UsuarioFuenteProceso::model()->
+		            	   			findByAttributes(array('usuario_proceso'=>$rol->DOCUMENTO,'id_fuente_proceso'=>$fp->id_fuente_proceso)))
+		            	   		{
+                                   $nuevo_usuario_fp= new UsuarioFuenteProceso();
+                                   $nuevo_usuario_fp->id_usuario_proceso=$rol->DOCUMENTO;
+                                   $nuevo_usuario_fp->usuario_proceso=$rol->DOCUMENTO;
+                                   $nuevo_usuario_fp->id_fuente_proceso=$fp->id_fuente_proceso;
+                                   $nuevo_usuario_fp->save();
+                                   
+                          
+		            	   		}
+		            	   		
+		            	   	 }
+		            	    }
+		                }
+		            
+		           $this->errorCode=self::ERROR_NONE;
+                        
                         
                 }       
 		return !$this->errorCode;
